@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1464255417 source:/home/davor/Code/CPP/Julijan/006/main.cpp
+	<iostream>
+	<fstream>
+

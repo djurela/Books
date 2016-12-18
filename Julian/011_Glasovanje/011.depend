@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1464346683 source:/home/davor/Code/CPP/Julijan/011_Glasovanje/main.cpp
+	<iostream>
+	<fstream>
+
