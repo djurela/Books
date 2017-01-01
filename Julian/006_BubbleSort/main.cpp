@@ -8,7 +8,7 @@ int main()
 {
     const int nmax = 100;
     double brojevi[nmax];
-    ifstream tok("/home/davor/Code/CPP/Julijan/006/Brojevi.txt");
+    ifstream tok("/home/davor/git/hub/Books/Julian/006_BubbleSort/Brojevi.txt");
     if(!tok) {
         cerr << "Nemogu otvoriti datoteku." << endl;
         return 1;
