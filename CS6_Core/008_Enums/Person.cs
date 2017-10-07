@@ -15,5 +15,12 @@ namespace _008_Enums
         {
             Children = new List<Person>();
         }
+
+        public Person(string name, DateTime dateOfBirth)
+        {
+            Name = name;
+            DateOfBirth = dateOfBirth;
+            Children = new List<Person>();
+        }
     }
 }

@@ -31,8 +31,8 @@ namespace _008_Enums
                 WriteLine($"Osoba {person.Name} je rođena {person.DateOfBirth:d MMM yyyy}.");
                 WriteLine($"Želi posjetiti: {person.BucketList}");
                 // Add children
-                person.Children.Add(new Person{Name = "Mišuljak", DateOfBirth = new DateTime(2015, 12, 24)});
-                person.Children.Add(new Person{Name = "Mišulja", DateOfBirth = new DateTime(2016, 11, 21)});
+                person.Children.Add(new Person("Mišuljak", new DateTime(2015, 12, 24)));
+                person.Children.Add(new Person(dateOfBirth : new DateTime(2016, 11, 21), name : "Mišulja"));
                 var childs = person.Children.OrderByDescending(d => d.DateOfBirth).Select(x => x.Name).ToArray();
                 //var childs = (from child in person.Children
                 //        orderby child.DateOfBirth descending
