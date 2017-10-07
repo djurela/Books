@@ -6,7 +6,7 @@ namespace _008_Enums
 {
     #region Enums
     [System.Flags]
-    public enum WondersEnum
+    public enum WondersEnum: byte
     {
         None = 0,
         GreatPyramid = 1,
