@@ -33,6 +33,7 @@ namespace _008_Enums
                 // Add children
                 person.Children.Add(new Person("Mišuljak", new DateTime(2015, 12, 24)));
                 person.Children.Add(new Person(dateOfBirth : new DateTime(2016, 11, 21), name : "Mišulja"));
+                person.Address = "Stenjevečka 38, Zagreb";
                 var childs = person.Children.OrderByDescending(d => d.DateOfBirth).Select(x => x.Name).ToArray();
                 //var childs = (from child in person.Children
                 //        orderby child.DateOfBirth descending
@@ -40,6 +41,7 @@ namespace _008_Enums
                 string message =$"Osoba ima {person.Children.Count} djece,";
                 if(person.Children.Count > 0) message += $" koja se zovu: {String.Join(", ", childs)}";
                 WriteLine(message);
+                if(!String.IsNullOrEmpty(person.Address)) WriteLine($"Adresa: {person.Address}");
             }
             catch(Exception excp)
             {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace _008_Enums
 {
-    public class Person
+    public partial class Person
     {
         public string Name;
         public DateTime DateOfBirth;
