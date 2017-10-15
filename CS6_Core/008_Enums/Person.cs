@@ -7,13 +7,13 @@ namespace _008_Enums
     {
         public string Name;
         public DateTime DateOfBirth;
-
         public WondersEnum BucketList;
         public List<Person> Children;
 
         public Person()
         {
             Children = new List<Person>();
+            mCountry = "Croatia";
         }
 
         public Person(string name, DateTime dateOfBirth)
