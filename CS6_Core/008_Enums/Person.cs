@@ -16,6 +16,11 @@ namespace _008_Enums
             mCountry = "Croatia";
         }
 
+        public Person(string name)
+        {
+            Name = name;
+            Children = new List<Person>();
+        }
         public Person(string name, DateTime dateOfBirth)
         {
             Name = name;
