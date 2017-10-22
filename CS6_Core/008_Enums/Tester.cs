@@ -36,6 +36,19 @@ namespace _008_Enums
             if(!String.IsNullOrEmpty(person.Country)) WriteLine($"Zemlja: {person.Country}");
             if(!String.IsNullOrEmpty(person.Province)) WriteLine($"Province: {person.Province}");
             WriteLine($"Pozdrav: {person.Greeting}");
+            WriteLine();
+            // Test event
+            person.Shout += P1_Shout;
+            person.Poke();
+            person.Poke();
+            person.Poke();
+            person.Poke();
+        }
+
+        private static void P1_Shout(object sender, EventArgs e)
+        {
+            Person p = (Person)sender;
+            WriteLine($"{p.Name} is this angry: {p.AngerLevel}.");
         }
 
         public void TestOperator()

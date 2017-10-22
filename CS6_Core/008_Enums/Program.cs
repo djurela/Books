@@ -25,8 +25,8 @@ namespace _008_Enums
             try
             {
                 Tester tester = new Tester();
-                //tester.TestPerson();
-                tester.TestOperator();
+                tester.TestPerson();
+                //tester.TestOperator();
             }
             catch(Exception excp)
             {

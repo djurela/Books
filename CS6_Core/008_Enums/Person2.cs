@@ -7,7 +7,12 @@ namespace _008_Enums
         #region Members
         public string Address;
         public string Province { get; set; } = "Zagrebačka županija"; 
+        public int AngerLevel;
         private string mCountry;
+        #endregion
+
+        #region Events
+        public event EventHandler Shout;
         #endregion
 
         #region Properties
@@ -35,6 +40,12 @@ namespace _008_Enums
             Children.Add(baby);
             partner.Children.Add(baby);
             return baby;
+        }
+
+        public void Poke()
+        {
+            AngerLevel++;
+            if(AngerLevel >= 3 && Shout != null) Shout(this, EventArgs.Empty);
         }
         #endregion
 
