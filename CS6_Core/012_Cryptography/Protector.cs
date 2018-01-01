@@ -2,14 +2,17 @@ using System;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
+using System.Collections.Generic;
 
 namespace _012_Cryptography
 {
     public static class Protector
     {
+        public static Dictionary<string, User> Users = new Dictionary<string, User>();
         private static readonly byte[] salt = Encoding.Unicode.GetBytes("7BANANAS");
         private static readonly int iterations = 2000;
 
+        #region Encription & decription
         public static string Encrypt(string plainText, string password)
         {
             byte[] plainBytes = Encoding.Unicode.GetBytes(plainText);
@@ -39,5 +42,39 @@ namespace _012_Cryptography
             }
             return Encoding.Unicode.GetString(ms.ToArray());
         }
+        #endregion
+
+        #region User handling
+        public static User Register(string userName, string password)
+        {
+            // generate random salt
+            var rng = RandomNumberGenerator.Create();
+            var saltBytes = new byte[16];
+            rng.GetBytes(saltBytes);
+            var saltText = Convert.ToBase64String(saltBytes);
+
+            // generate the salted and hashed password
+            var sha = SHA256.Create();
+            var saltedPassword = password + saltText;
+            var saltedhashedPassword = Convert.ToBase64String(sha.ComputeHash(Encoding.Unicode.GetBytes(saltedPassword)));
+
+            var user = new User{Name = userName, Salt = saltText, SaltedHashPassword = saltedhashedPassword};
+            Users.Add(user.Name, user);
+            
+            return user;
+        }
+
+        public static bool CheckPassword(string userName, string password)
+        {
+            if(!Users.TryGetValue(userName, out User user)) return false;
+
+            // regenerate the salted and hashed password
+            var sha = SHA256.Create();
+            var saltedPassword = password + user.Salt;
+            var saltedhashedPassword = Convert.ToBase64String(sha.ComputeHash(Encoding.Unicode.GetBytes(saltedPassword)));
+
+            return saltedhashedPassword == user.SaltedHashPassword;
+        }
+        #endregion
     }
 }

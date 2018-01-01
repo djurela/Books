@@ -7,7 +7,8 @@ namespace _012_Cryptography
     {
         static void Main(string[] args)
         {
-            RunCryptography();
+            //RunCryptography();
+            RunHashing();
         }
 
         #region Cryptography
@@ -21,6 +22,36 @@ namespace _012_Cryptography
             WriteLine($"Encrypeted test: {cryptoText}");
             string clearText = Protector.Decrypt(cryptoText, password);
             WriteLine($"decrypted text: {clearText}");
+        }
+        #endregion
+
+        #region Hashing
+        private static void RunHashing()
+        {
+            Write("Enter user name: ");
+            string userName = ReadLine();
+            Write("Enter password: ");
+            string password = ReadLine();
+            var user = Protector.Register(userName, password);
+            WriteLine($"User name: {user.Name}");
+            WriteLine($"Salt: {user.Salt}");
+            WriteLine($"SaltedHashPassword : {user.SaltedHashPassword}");
+
+            bool isCorrect = false;
+            while(!isCorrect)
+            {
+                Write("Enter user name: ");
+                string loginUserName = ReadLine();
+                Write("Enter password: ");
+                string loginPassword = ReadLine();
+                if(Protector.CheckPassword(loginUserName, loginPassword))
+                {
+                    WriteLine("User name / password is valid");
+                    isCorrect = true;
+                }
+                else
+                    WriteLine("Invalid user name / password");
+            }
         }
         #endregion
     }
