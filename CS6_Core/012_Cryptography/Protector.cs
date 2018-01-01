@@ -9,6 +9,7 @@ namespace _012_Cryptography
     public static class Protector
     {
         public static Dictionary<string, User> Users = new Dictionary<string, User>();
+        public static string PublicKey;
         private static readonly byte[] salt = Encoding.Unicode.GetBytes("7BANANAS");
         private static readonly int iterations = 2000;
 
@@ -74,6 +75,39 @@ namespace _012_Cryptography
             var saltedhashedPassword = Convert.ToBase64String(sha.ComputeHash(Encoding.Unicode.GetBytes(saltedPassword)));
 
             return saltedhashedPassword == user.SaltedHashPassword;
+        }
+        #endregion
+
+        #region Signing data
+        public static string GenerateSignature(string data)
+        {
+            byte[] dataBytes = Encoding.Unicode.GetBytes(data);
+            var sha = SHA256.Create();
+            var hashedData = sha.ComputeHash(dataBytes);
+
+            var rsa = RSA.Create();
+            PublicKey = rsa.ToXmlString(false); // exclude private key
+
+            var signer = new RSAPKCS1SignatureFormatter(rsa);
+            signer.SetHashAlgorithm("SHA256");
+
+            return Convert.ToBase64String(signer.CreateSignature(hashedData));
+        }
+
+        public static bool ValidateSignature(string data, string signature)
+        {
+            byte[] dataBytes = Encoding.Unicode.GetBytes(data);
+            var sha = SHA256.Create();
+            var hashedData = sha.ComputeHash(dataBytes);
+
+            byte[] signatureBytes = Convert.FromBase64String(signature);
+            var rsa = RSA.Create();
+            rsa.FromXmlString(PublicKey);
+
+            var checker = new RSAPKCS1SignatureDeformatter(rsa);
+            checker.SetHashAlgorithm("SHA256");
+
+            return checker.VerifySignature(hashedData, signatureBytes);
         }
         #endregion
     }

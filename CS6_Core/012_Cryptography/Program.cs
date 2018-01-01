@@ -8,7 +8,8 @@ namespace _012_Cryptography
         static void Main(string[] args)
         {
             //RunCryptography();
-            RunHashing();
+            //RunHashing();
+            RunSigning();
         }
 
         #region Cryptography
@@ -52,6 +53,23 @@ namespace _012_Cryptography
                 else
                     WriteLine("Invalid user name / password");
             }
+        }
+        #endregion
+
+        #region Signing
+        private static void RunSigning()
+        {
+            Write("Write some text to sign: ");
+            string data = ReadLine();
+            var signature = Protector.GenerateSignature(data);
+            WriteLine($"Signature: {signature}");
+            WriteLine("Public key used to check signature: ");
+            WriteLine(Protector.PublicKey);
+
+            if(Protector.ValidateSignature(data, signature))
+                WriteLine("Signature is correct.");
+            else
+                WriteLine("Signature is invalid.");
         }
         #endregion
     }
