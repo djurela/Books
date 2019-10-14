@@ -5,7 +5,7 @@ using namespace std;
 
 int main()
 {
-    ifstream tok("/home/davor/Code/CPP/Julijan/005/Brojevi.txt");
+    ifstream tok("/home/davor/git/hub/Books/Julian/005_CitanjeIzDatoteke/Brojevi.txt");
     //ifstream tok("Brojevi.txt");
     cout << "Sadržaj datoteke" << endl << endl;
 
