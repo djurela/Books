@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1592151740 source:/home/davor/git/hub/Books/Julian/026_StringFunkcije/main.cpp
+	<iostream>
+	<cstring>
+	<clocale>
+
