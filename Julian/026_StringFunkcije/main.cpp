@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cstring>
-#include <clocale>
+#include <locale.h>
 using namespace std;
 
 int main()
@@ -31,7 +31,7 @@ int main()
     const char* knjiski = "tata";
     const char* naski = "ćaća";
     cout << "strcmp: " << strcmp(knjiski, naski) << endl;
-    setlocale(LC_ALL, "Croatian");
+    setlocale(LC_CTYPE, "hr-HR.UTF-8");
     cout << "strcoll: " << strcoll(knjiski, naski) << endl;
 
     return 0;
