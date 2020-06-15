@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1592244892 source:/home/davor/git/hub/Books/Julian/028_Assert/main.cpp
+	<iostream>
+	<cassert>
+	<math.h>
+
